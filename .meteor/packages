@@ -44,7 +44,7 @@ useraccounts:bootstrap
 npm-container
 
 lokenx:themoviedbsearch
-lokenx:couchpotatowrapper
+timvdh1:couchpotatowrapper
 lokenx:sickragewrapper
 lokenx:sonarrwrapper
 meteorhacks:npm
