@@ -2,7 +2,7 @@ Template.search.onCreated(function () {
   this.results = new ReactiveVar();
   this.error = new ReactiveVar(false);
   this.searching = new ReactiveVar(false);
-
+  
   Session.set("searchOptions", []);
   Session.set("searchDisabled", false);
 
@@ -17,16 +17,15 @@ Template.search.onCreated(function () {
       instance.searchType = new ReactiveVar("none");
     }
   });
-
-
-
-
+  Meteor.call("searchProfiles", function (error, result) {
+      Session.set("searchProfiles", result);
+  });
 });
 
 Template.search.helpers({
-	"searchOptions": function () {
+  "searchOptions": function () {
     return Session.get("searchOptions");
-	},
+  },
   "firstSearchOption": function () {
     return Session.get("searchOptions")[0];
   },
@@ -35,16 +34,16 @@ Template.search.helpers({
       return "disabled";
     }
   },
-	"error": function () {
-		return Template.instance().error.get();
-	},
-	"searching": function () {
-		return Template.instance().searching.get();
-	},
-	"searchType": function () {
-		return Template.instance().searchType.get();
-	},
-	'results': function () {
+  "error": function () {
+  	return Template.instance().error.get();
+  },
+  "searching": function () {
+  	return Template.instance().searching.get();
+  },
+  "searchType": function () {
+  	return Template.instance().searchType.get();
+  },
+  'results': function () {
     return Template.instance().results.get();
   },
   'activeSearch' : function () {
