@@ -31,25 +31,15 @@ Meteor.methods({
 
 		return options;
 	},
-	"searchProfiles": function(searchType) {
-		check(searchType, String);
-
-		if (searchType !== "Music") {
-			var type = (searchType === "Movies") ? "movie" : "tv";
-						
-			try {
-				var settings = Settings.find().fetch()[0];			
-				if (settings.couchPotatoENABLED) {	
-					if(type === "movie") {					
-						return CouchPotato.profileList();
-					}
-				}
-				return [];
-			} catch (error) {
-				logger.error("CouchPotato Error -> " + error.message);
-				return [];
+	"searchProfiles": function() {
+		try {
+			var settings = Settings.find().fetch()[0];			
+			if (settings.couchPotatoENABLED) {			
+				return CouchPotato.profileList();
 			}
-		} else {
+			return [];
+		} catch (error) {
+			logger.error("CouchPotato Error -> " + error.message);
 			return [];
 		}	
 	}

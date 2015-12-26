@@ -28,14 +28,14 @@
                 </div>
               </div>
             {{else}}
-				{#if searchProfilesExists}}
+				{{#if searchProfilesExists}}
 				  <div class="btn-group" role="group">
 					<button type="button" class="btn btn-primary-outline dropdown-toggle tv-request" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 					  <i class="fa fa-plus"></i> &nbsp; Request
 					</button>
 					<div class="dropdown-menu">
 						{{#each searchProfiles}}
-							<a class="dropdown-item add-request" href="#" value="false">Request New Episodes</a>
+							<a class="dropdown-item add-request" href="#" value="{{id}}">{{label}}</a>
 						{{/each}}
 					</div>
 				  </div>

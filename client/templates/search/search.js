@@ -18,7 +18,7 @@ Template.search.onCreated(function () {
     }
   });
   Meteor.call("searchProfiles", function (error, result) {
-      Session.set("searchProfiles", result);
+      Session.set("searchProfiles", [{id:1234, label:"HD"},{id:5467, label:"BR"}]);
   });
 });
 
@@ -93,6 +93,7 @@ Template.search.events({
     var request = this;
     request.user = Session.get("user");
     request.episodes = ($(event.target).attr("value") === "true") ? true : false;
+	request.profile_id = $(event.target).attr("value");
 
     if (this.media_type === "movie") {
       btn.html('<i class="fa fa-spinner fa-spin"></i> &nbsp; Requesting...');

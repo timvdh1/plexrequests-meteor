@@ -88,7 +88,7 @@ Meteor.methods({
 
 			if (settings.couchPotatoENABLED) {
 				try {
-					var add = CouchPotato.movieAdd(imdb);
+					var add = CouchPotato.movieAdd(imdb+"&profile_id="+request.profile_id);
 				} catch (error) {
 					logger.error("Error adding to Couch Potato:", error.message)
 					return false;
