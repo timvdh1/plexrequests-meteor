@@ -7,7 +7,7 @@ Meteor.methods({
 		if (searchType !== "Music") {
 			var type = (searchType === "Movies") ? "movie" : "tv";
 
-			try {
+			try {				
 				var result = Meteor.call("TMDBSearch", searchterm, type)
 			} catch (error) {
 				logger.error("TMDBSearch Error -> " + error.message);
@@ -30,5 +30,27 @@ Meteor.methods({
 		}
 
 		return options;
+	},
+	"searchProfiles": function(searchType) {
+		check(searchType, String);
+
+		if (searchType !== "Music") {
+			var type = (searchType === "Movies") ? "movie" : "tv";
+						
+			try {
+				var settings = Settings.find().fetch()[0];			
+				if (settings.couchPotatoENABLED) {	
+					if(type === "movie") {					
+						return CouchPotato.profileList();
+					}
+				}
+				return [];
+			} catch (error) {
+				logger.error("CouchPotato Error -> " + error.message);
+				return [];
+			}
+		} else {
+			return [];
+		}	
 	}
 });

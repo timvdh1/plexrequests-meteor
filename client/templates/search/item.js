@@ -29,5 +29,11 @@ Template.item.helpers({
         return "Requested"
       }
     }
-  }
+  },
+  "searchProfiles": function () {
+    return Session.get("searchProfiles");
+  },
+  "searchProfilesExists": function () {
+    return Session.get("searchProfiles").length !== 0;
+  },
 })
